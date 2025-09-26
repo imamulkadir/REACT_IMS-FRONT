@@ -4,6 +4,7 @@
 :root {
   /* Light Mode */
   --color-bg: #f9fafb;
+  --color-bg-secondary: #202020;
   --color-sidebar: #ffffff;
   --color-card: #ffffff;
   --color-text-primary: #111827;
@@ -18,6 +19,7 @@
 [data-theme="dark"] {
   /* Dark Mode */
   --color-bg: #111827;
+  --color-bg-secondary: #ffffff;
   --color-sidebar: #1f2937;
   --color-card: #1f2937;
   --color-text-primary: #f9fafb;

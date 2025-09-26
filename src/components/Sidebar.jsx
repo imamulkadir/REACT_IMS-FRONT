@@ -1,48 +1,104 @@
-import { CogIcon, HomeIcon, UserIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
+import { MdOutlineDashboard, MdInventory } from "react-icons/md";
+import { AiOutlineProduct } from "react-icons/ai";
+import { LuTruck } from "react-icons/lu";
+import { FiUsers } from "react-icons/fi";
+import { RiCurrencyFill } from "react-icons/ri";
+import { IoStatsChart } from "react-icons/io5";
+import { FaGear } from "react-icons/fa6";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "Home", icon: <HomeIcon className="w-6 h-6" /> },
-  { label: "Profile", icon: <UserIcon className="w-6 h-6" /> },
-  { label: "Settings", icon: <CogIcon className="w-6 h-6" /> },
+  {
+    label: "Dashboard",
+    icon: <MdOutlineDashboard className="w-6 h-6" />,
+    path: "/dashboard",
+  },
+  {
+    label: "Products",
+    icon: <AiOutlineProduct className="w-6 h-6" />,
+    path: "/products",
+  },
+  {
+    label: "Suppliers",
+    icon: <LuTruck className="w-6 h-6" />,
+    path: "/suppliers",
+  },
+  {
+    label: "Customers",
+    icon: <FiUsers className="w-6 h-6" />,
+    path: "/customers",
+  },
+  {
+    label: "Transactions",
+    icon: <RiCurrencyFill className="w-6 h-6" />,
+    path: "/transactions",
+  },
+  {
+    label: "Reports",
+    icon: <IoStatsChart className="w-6 h-6" />,
+    path: "/reports",
+  },
+  {
+    label: "Settings",
+    icon: <FaGear className="w-6 h-6" />,
+    path: "/settings",
+  },
 ];
+
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
       <div
-        className={`bg-gray-800 text-white transition-all duration-300 ${
+        className={`bg-[var(--color-bg)] text-[var(--color-text-primary)] transition-all duration-300 ${
           collapsed ? "w-20" : "w-64"
         } flex flex-col`}
       >
         {/* Header */}
-        <div className="h-16 flex items-center justify-center border-b border-gray-700">
+        <div className="h-16 flex items-center justify-start pl-4 border-b border-[var(--color-border)]">
           {!collapsed ? (
-            <h1 className="text-xl font-bold">IMS</h1>
+            <>
+              <MdInventory className="w-6 h-6 text-[var(--color-accent)]" />
+              <h1 className="pl-2 text-xl font-bold">IMS</h1>
+            </>
           ) : (
-            <span>IMS</span>
+            <span className="flex items-center justify-center">
+              <MdInventory className="w-6 h-6 text-[var(--color-accent)]" />
+            </span>
           )}
         </div>
 
         {/* Nav Items */}
         <div className="flex-1">
-          {navItems.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-4 px-4 py-3 hover:bg-gray-700 cursor-pointer"
-            >
-              {item.icon}
-              {!collapsed && <span>{item.label}</span>}
-            </div>
-          ))}
+          {navItems.map((item, idx) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <div
+                key={idx}
+                className={`flex items-center gap-4 px-4 py-3 cursor-pointer transition-colors ${
+                  isActive
+                    ? "bg-[var(--color-bg-secondary)] text-[var(--color-bg)] font-semibold"
+                    : "hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-sidebar)]"
+                }`}
+                onClick={() => navigate(item.path)}
+              >
+                {item.icon}
+                {!collapsed && <span>{item.label}</span>}
+              </div>
+            );
+          })}
         </div>
 
         {/* Toggle Button */}
-        <div className="p-4 border-t border-gray-700">
+        <div className="p-4 border-t border-[var(--color-border)]">
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="w-full flex items-center justify-center gap-2 py-2 bg-gray-700 hover:bg-gray-600 rounded"
+            className="w-full flex items-center justify-center gap-2 py-2 hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-sidebar)] rounded"
           >
             {collapsed ? (
               <svg
@@ -71,7 +127,6 @@ const Sidebar = () => {
                 />
               </svg>
             )}
-            {!collapsed && <span>Collapse</span>}
           </button>
         </div>
       </div>
