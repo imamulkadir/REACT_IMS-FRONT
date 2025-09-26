@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Light Mode */
   --color-bg: #f9fafb;
@@ -14,6 +18,8 @@
   --color-warning: #facc15;
   --color-error: #ef4444;
   --color-border: #e5e7eb;
+  --color-btn-text: #ffffff;
+  --color-btn-bg: #202020;
 }
 
 [data-theme="dark"] {
@@ -29,4 +35,6 @@
   --color-warning: #eab308;
   --color-error: #f87171;
   --color-border: #374151;
+  --color-btn-text: #202020;
+  --color-btn-bg: #ffffff;
 }
