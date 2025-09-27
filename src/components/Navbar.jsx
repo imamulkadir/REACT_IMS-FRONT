@@ -1,8 +1,24 @@
 import { IoMdLogOut } from "react-icons/io";
-import { useTheme } from "../context/ThemeContext.jsx"; // ⬅ import context
+import { useTheme } from "../context/ThemeContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const { userData, setUserData } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUserData(null);
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (!userData) {
+      navigate("/login");
+    }
+  }, [userData]);
 
   return (
     <div>
@@ -70,15 +86,15 @@ const Navbar = () => {
             >
               <li>
                 <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                  {userData ? userData.userName : "Guest"}
+                  {/* <span className="badge">{user.email}</span> */}
                 </a>
               </li>
               <li>
                 <a>Settings</a>
               </li>
               <li>
-                <a>
+                <a onClick={handleLogout}>
                   <IoMdLogOut size={18} />
                 </a>
               </li>

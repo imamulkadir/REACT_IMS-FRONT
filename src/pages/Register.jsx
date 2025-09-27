@@ -35,25 +35,27 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="bg-white p-8 rounded-md flex gap-4  flex-col items-center justify-center">
+      <div className="bg-[var(--color-card)] p-8 rounded-md flex gap-4  flex-col items-center justify-center border border-[var(--color-border)] ">
         <div className="flex flex-col gap-2 items-center justify-center">
           <h1 className="text-2xl font-bold bg-[var(--color-accent)] text-white p-4 rounded-md">
             IMS
           </h1>
-          <h2 className="text-lg font-semibold text-slate-950">Register</h2>
-          <p className="text-sm text-gray-400">
+          <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">
+            Inventory Management System
+          </h2>
+          <p className="text-sm text-[var(--color-text-secondary)]">
             Create an account to manage your inventory
           </p>
         </div>
         <div className="flex flex-col gap-2 w-full">
           <label
             htmlFor="userName"
-            className="text-sm font-medium text-gray-950"
+            className="text-sm font-medium text-[var(--color-text-primary)]"
           >
             Username
           </label>
           <input
-            className="p-2 rounded-md bg-gray-100 text-gray-950"
+            className="p-2 rounded-md bg-[var(--color-bg)] text-[var(--color-text-primary)]"
             type="text"
             placeholder="Enter your username"
             name="userName"
@@ -61,11 +63,14 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="email" className="text-sm font-medium text-gray-950">
+          <label
+            htmlFor="email"
+            className="text-sm font-medium text-[var(--color-text-primary)]"
+          >
             Email
           </label>
           <input
-            className="p-2 rounded-md bg-gray-100 text-gray-950"
+            className="p-2 rounded-md bg-[var(--color-bg)] text-[var(--color-text-primary)]"
             type="email"
             placeholder="Enter your email"
             name="email"
@@ -75,12 +80,12 @@ const Register = () => {
           />
           <label
             htmlFor="password"
-            className="text-sm font-medium text-gray-950"
+            className="text-sm font-medium text-[var(--color-text-primary)]"
           >
             Password
           </label>
           <input
-            className="p-2 rounded-md bg-gray-100 text-gray-950"
+            className="p-2 rounded-md bg-[var(--color-bg)] text-[var(--color-text-primary)]"
             type="password"
             placeholder="Enter your password"
             name="password"
@@ -94,14 +99,14 @@ const Register = () => {
             </p>
           )}
           <button
-            className="bg-[#202020] text-sm py-2 rounded-md text-white"
+            className="bg-[var(--color-btn-bg)] text-sm py-2 rounded-md text-[var(--color-btn-text)]"
             type="submit"
             onClick={handleRegister}
           >
             Register
           </button>
         </div>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-[var(--color-text-secondary)]">
           Already have an account?{" "}
           <Link
             to="/login"
